@@ -1,7 +1,9 @@
 package ba.newsportal.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -46,7 +48,9 @@ public class News {
     private Instant updatedAt;
 
     @NotNull(message = "User can't be null")
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "owner_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id", nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private User owner;
 }
