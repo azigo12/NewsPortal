@@ -2,6 +2,8 @@ package model;
 
 import ba.newsportal.model.News;
 import ba.newsportal.model.User;
+import ba.newsportal.model.enums.Gender;
+import ba.newsportal.model.enums.Role;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +14,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +28,6 @@ public class NewsTest {
     private static Validator validator;
     private static News n = new News();
     private static User u = new User();
-
 
     @BeforeAll
     public static void createValidator() {
@@ -47,7 +47,7 @@ public class NewsTest {
         u.setFirstName("Amila");
         u.setLastName("Zigo");
         u.setEmail("someone@gmail.com");
-        u.setPassword("pass");
+        u.setPassword("Password1");
         u.setGender("FEMALE");
         u.setRole("ADMIN");
 
