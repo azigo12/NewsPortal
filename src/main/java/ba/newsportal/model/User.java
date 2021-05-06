@@ -49,12 +49,12 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     @NotNull
     @EnumGenderPattern(regexp = "MALE|FEMALE")
-    private Gender gender;
+    private String gender;
 
     @Enumerated(EnumType.ORDINAL)
     @NotNull
     @EnumGenderPattern(regexp = "ADMIN|REGULAR")
-    private Role role;
+    private String role;
 
     @CreationTimestamp
     @Column(name = "created_at")

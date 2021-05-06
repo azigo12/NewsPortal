@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.UUID;
@@ -21,6 +21,7 @@ public class News {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @NotNull(message = "Id can't be null")
     private UUID id;
 
     @NotBlank(message = "Title can't be blank")
@@ -44,6 +45,7 @@ public class News {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @NotNull(message = "User can't be null")
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id")
     private User owner;
