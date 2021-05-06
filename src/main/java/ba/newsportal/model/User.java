@@ -2,7 +2,8 @@ package ba.newsportal.model;
 
 import ba.newsportal.model.enums.Gender;
 import ba.newsportal.model.enums.Role;
-import ba.newsportal.validation.annotation.EnumGenderPattern;
+import ba.newsportal.validation.annotation.ValueOfEnumGender;
+import ba.newsportal.validation.annotation.ValueOfEnumRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,18 +44,18 @@ public class User {
     @NotBlank(message = "Password can't be blank")
     @Size(min = 8, message = "Password must contain at least eight characters")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
-            message = "Password must contain at least one lowercase, one uppercase and one digit.")
+            message = "Password must contain at least one lowercase, one uppercase and one digit")
     private String password;
 
-    @Enumerated(EnumType.ORDINAL)
-    @NotNull
-    @EnumGenderPattern(regexp = "MALE|FEMALE")
-    private Gender gender;
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Gender can't be null")
+    @ValueOfEnumGender(enumClass = Gender.class)
+    private String gender;
 
-    @Enumerated(EnumType.ORDINAL)
-    @NotNull
-    @EnumGenderPattern(regexp = "ADMIN|REGULAR")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Role can't be null")
+    @ValueOfEnumRole(enumClass = Role.class)
+    private String role;
 
     @CreationTimestamp
     @Column(name = "created_at")
